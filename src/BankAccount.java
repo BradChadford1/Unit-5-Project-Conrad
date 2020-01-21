@@ -7,7 +7,7 @@ public class BankAccount implements Lockable {
     private DecimalFormat money = new DecimalFormat("0.00");
     private double yearlyInt;
     private int key;
-    private boolean locked;
+    private boolean locked;//sign out NOOB
 
     public BankAccount(String name, int key, String type, double intDeposit){
         account = name;
