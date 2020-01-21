@@ -7,12 +7,12 @@ public class BankAccount implements Lockable {
     private DecimalFormat money = new DecimalFormat("0.00");
     private double yearlyInt;
     private int key;
-    private boolean locked;//sign out NOOB
+    private boolean locked;
 
     public BankAccount(String name, int key, String type, double intDeposit){
         account = name;
         currency = type;
-        balanceString = balance + "";
+        balance = intDeposit;
         balanceString = money.format(intDeposit);
         System.out.println(account + " account was created with and initial deposit of " + balanceString + " " + currency + " dollars.");
         this.key = key;
@@ -21,7 +21,7 @@ public class BankAccount implements Lockable {
     }
 
     public void deposit(int key, double amount) {
-        if((this.key == key) || (!locked)) {
+        if((this.key == key) && (!locked)) {
             balance = balance + amount;
             balanceString = money.format(balance);
             System.out.println(amount + " " + currency + " dollars was deposited to " + account + " account.\nNew balance is " + balanceString + " " + currency + " dollars.");
@@ -29,7 +29,7 @@ public class BankAccount implements Lockable {
     }
 
     public void withdrawal(int key, double amount) {
-        if((this.key == key) || (!locked)) {
+        if((this.key == key) && (!locked)) {
             if ((balance - amount) >= 0) {
                 balance = balance - amount;
                 balanceString = money.format(balance);
